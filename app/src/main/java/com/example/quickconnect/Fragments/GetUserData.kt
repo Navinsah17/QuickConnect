@@ -19,6 +19,7 @@ import com.example.quickconnect.Activities.SplashScreen
 import com.example.quickconnect.Constants.AppConstants
 import com.example.quickconnect.Permission.AppPermission
 import com.example.quickconnect.databinding.FragmentGetUserDataBinding
+import com.example.quickconnect.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -135,17 +136,39 @@ class GetUserData : Fragment() {
                 val task = it.storage.downloadUrl
                 task.addOnCompleteListener { uri ->
                     imageUrl = uri.result.toString()
-                    val map = mapOf(
+                    val currentUser = firebaseAuth!!.currentUser
+                    /*val map = mapOf(
                         "name" to name,
                         "status" to status,
                         "image" to imageUrl
                     )
                     databaseReference!!.child(firebaseAuth!!.uid!!).updateChildren(map)
-
                     Toast.makeText(context,"Data Uploaded",Toast.LENGTH_SHORT).show()
-
                     startActivity(Intent(context, DashboardActivity::class.java))
-                    requireActivity().finish()
+                    requireActivity().finish()*/
+                    val user = User(
+                        uid = firebaseAuth!!.uid!!,
+                        displayName = name,
+                        imageUrl = imageUrl,
+                        emailId = "",
+                        phoneNo = currentUser?.phoneNumber.orEmpty(),
+                        status = status
+                    )
+
+
+                    databaseReference!!.child(firebaseAuth!!.uid!!).setValue(user)
+                        .addOnSuccessListener {
+                            Toast.makeText(context, "Data Uploaded", Toast.LENGTH_SHORT).show()
+
+                            startActivity(Intent(context, DashboardActivity::class.java))
+                            requireActivity().finish()
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle the failure and log or display the error message
+                            //Log.e("UploadData", "Upload failed: ${exception.message}")
+                            Toast.makeText(context, "Uploading Failed...", Toast.LENGTH_SHORT).show()
+                        }
+
                 }
             }
     }

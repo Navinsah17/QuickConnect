@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/btnChat"
+        android:title="Chat"
+        android:icon="@drawable/chat"
+        app:cnb_backgroundColor ="@color/colorPrimary"
+        android:iconTint="@color/white"
+        />
+
+    <item
+        android:id="@+id/btnContact"
+        android:title="Contact"
+        android:icon="@drawable/contact"
+        app:cnb_backgroundColor ="@color/colorPrimary"
+        android:iconTint="@color/white"
+        />
+
+    <item
+        android:id="@+id/btnProfile"
+        android:title="Profile"
+        android:icon="@drawable/person"
+        app:cnb_backgroundColor ="@color/colorPrimary"
+        android:iconTint="@color/white"
+        />
+
+
+
+</menu>

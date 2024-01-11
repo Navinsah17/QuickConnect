@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">QuickConnect</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="hey_i_m_using_this_app">Hey! I,m using this app</string>
+    <string name="done">Done</string>
+    <string name="we_have_sent_you_an_otp_for_n_verification_phone_number">We have sent you an OTP for \n verification phone number</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="hint">------</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="your_web_client_id">341869295444-l1j4jeiv71csgtdqh4jr0mp7vt53dqi0.apps.googleusercontent.com</string>
+</resources>

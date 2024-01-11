@@ -1,228 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragments.ProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="userModel"
+            type="com.example.quickconnect.models.User" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="2">
+        tools:context=".Fragment.ProfileFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".8"
-            android:background="@color/colorPrimary"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="2">
 
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.4">
+                android:layout_weight=".8"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgProfile"
-                    imageUrl="@{userModel.imageUrl}"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center" />
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.4">
 
-                <ImageView
-                    android:id="@+id/imgPickImage"
-                    android:layout_width="50dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/camera"
-                    app:layout_anchor="@id/imgProfile"
-                    app:layout_anchorGravity="end|center"
-                    app:tint="@color/colorAccent" />
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        app:imageUrl="@{userModel.imageUrl}"
+                        android:src="@drawable/default_image"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center" />
 
-            <TextView
-                android:id="@+id/txtProfileName"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_weight=".3"
-                android:text="@{userModel.name , default=Nothing}"
-                android:textColor="@color/colorAccent"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".3">
+                    <ImageView
+                        android:id="@+id/imgPickImage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/cam"
+                        app:layout_anchor="@id/imgProfile"
+                        android:layout_marginTop="122dp"
+                        android:layout_marginEnd="110dp"
+                        app:layout_anchorGravity="end|center"
+                         />
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
                 <TextView
-                    android:id="@+id/txtProfileStatus"
+                    android:id="@+id/txtProfileName"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_weight=".4"
-                    android:text="@{userModel.status , default=Nothing}"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight=".3"
+                    android:text="@{userModel.displayName , default=Nothing}"
                     android:textColor="@color/colorAccent"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/imgEditStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@+id/txtProfileStatus"
-                    android:src="@drawable/edit_icon" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.2"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardName"
-                android:layout_width="match_parent"
-                android:layout_height="103dp">
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="0dp"
+                    android:layout_weight=".3">
 
                     <TextView
+                        android:id="@+id/txtProfileStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Username"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_centerInParent="true"
+                        android:layout_weight=".4"
+                        android:text="@{userModel.status , default=Nothing}"
+                        android:textColor="@color/colorAccent"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
+                    <ImageView
+                        android:id="@+id/imgEditStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toRightOf="@+id/txtProfileStatus"
+                        android:src="@drawable/edit_icon" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardName"
+                    android:layout_width="match_parent"
+                    android:layout_height="103dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_weight="1"
-                            android:text="First Name"
-                            android:textColor="@color/grey"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Last Name"
-                            android:textColor="@color/grey"
-                            android:textSize="15dp"
-                            android:textStyle="bold" />
-
-                        <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/next_icon" />
+                            android:padding="10dp"
+                            android:text="Username"
+                            android:drawableLeft="@drawable/person"
+                            android:drawablePadding="10dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/name"
+                                android:layout_width="0dp"
+                                android:layout_height="35dp"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_weight="1"
+
+                                android:text="Name"
+                                android:textColor="@color/grey"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
+
+
+                        </LinearLayout>
+
                     </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginVertical="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="5dp">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtProfileFName"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_weight=".9"
-                            android:text="First Name"
+                            android:padding="10dp"
+                            android:text="Phone"
+                            android:drawableLeft="@drawable/mobile_icon"
+                            android:drawablePadding="10dp"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/txtProfileLName"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1.1"
-                            android:text="Last Name"
+                            android:id="@+id/txtProfileNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@{userModel.phoneNo , default=Nothing}"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15dp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_marginVertical="10dp">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/deleteCard"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="40dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Phone"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtProfileNumber"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="@{userModel.number , default=Nothing}"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="Delete Account."
+                            android:drawableLeft="@drawable/deleteicon"
+                            android:drawablePadding="10dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/deleteCard"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:text="Delete Account."
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </LinearLayout>
-
-</RelativeLayout>
+</layout>

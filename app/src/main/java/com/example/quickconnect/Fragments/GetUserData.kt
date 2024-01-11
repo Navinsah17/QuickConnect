@@ -58,9 +58,6 @@ class GetUserData : Fragment() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         storageReference = FirebaseStorage.getInstance().reference
 
-//        dialog = AlertDialog.Builder(context)
-//            .setMessage("Updating Profile...")
-//            .setCancelable(false)
 
 
         bindingud.imgPickImage.setOnClickListener {

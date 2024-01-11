@@ -24,7 +24,8 @@
             android:id="@+id/imgPickImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="122dp"
             android:src="@drawable/camera"
             app:layout_anchor="@id/imgUser"
             app:layout_anchorGravity="end|center" />

@@ -22,9 +22,11 @@
         android:theme="@style/Theme.QuickConnect"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.EditNameActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.SignInActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".Activities.SplashScreen"
             android:exported="true">

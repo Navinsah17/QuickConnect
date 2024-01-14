@@ -50,4 +50,30 @@ class AppRepository {
         return liveData!!
 
     }
+
+    fun updateStatus(status: String) {
+        val databaseReference =
+            FirebaseDatabase.getInstance().getReference("Users").child(util.getUID()!!)
+
+        val map = mapOf<String, Any>("status" to status)
+        databaseReference.updateChildren(map)
+
+    }
+
+    fun updateName(userName: String) {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(util.getUID()!!)
+
+        val map = mapOf<String, Any>("displayName" to userName)
+        databaseReference.updateChildren(map)
+    }
+
+    fun updatImage(imagePath: String) {
+
+        val databaseReference =
+            FirebaseDatabase.getInstance().getReference("Users").child(util.getUID()!!)
+
+        val map = mapOf<String, Any>("imageUrl" to imagePath)
+        databaseReference.updateChildren(map)
+
+    }
 }

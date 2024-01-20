@@ -1,10 +1,13 @@
 package com.example.quickconnect.Fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.quickconnect.Activities.DashboardActivity
 import com.example.quickconnect.R
 import com.example.quickconnect.databinding.FragmentGetUserNumberBinding
 import com.example.quickconnect.databinding.FragmentVerifyNumberBinding
@@ -12,8 +15,11 @@ import com.example.quickconnect.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class VerifyNumber : Fragment() {
 
@@ -50,7 +56,7 @@ class VerifyNumber : Fragment() {
         return bindingv.root
     }
 
-    private fun signInUser(credential: PhoneAuthCredential) {
+    /*private fun signInUser(credential: PhoneAuthCredential) {
         firebaseAuth!!.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
                 val userModel =
@@ -67,9 +73,44 @@ class VerifyNumber : Fragment() {
                     .commit()
             }
         }
+    }*/
+    private fun signInUser(credential: PhoneAuthCredential) {
+        firebaseAuth!!.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val userId = firebaseAuth!!.uid!!
+
+                databaseReference!!.child(userId).addListenerForSingleValueEvent(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            redirectToDashboard()
+                        } else {
+                            val userModel = User("", "", "", firebaseAuth!!.currentUser!!.phoneNumber!!, userId)
+
+                            databaseReference!!.child(userId).setValue(userModel)
+                            redirectToGetUserData()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("SignInUser", "Database error: ${error.message}")
+                    }
+                })
+            }
+        }
     }
 
-    
+    private fun redirectToDashboard() {
+        startActivity(Intent(context, DashboardActivity::class.java))
+        requireActivity().finish()
+    }
+    private fun redirectToGetUserData() {
+        // Ask for user data, replace with the appropriate fragment/activity
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.main_container, GetUserData())
+            .commit()
+    }
 
 
     companion object {

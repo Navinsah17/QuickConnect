@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.example.quickconnect.Fragments.GetUserData
+import com.example.quickconnect.Fragments.GetUserNumber
 import com.example.quickconnect.R
 import com.example.quickconnect.daos.UserDao
 import com.example.quickconnect.databinding.ActivitySignInBinding
@@ -132,6 +134,7 @@ class SignInActivity : AppCompatActivity() {
             val dashboardActivityIntent = Intent(this, DashboardActivity::class.java)
             startActivity(dashboardActivityIntent)
             finish()
+
         } else {
             bindingsignin.signInButton.visibility = View.VISIBLE
             bindingsignin.progressBar.visibility = View.GONE

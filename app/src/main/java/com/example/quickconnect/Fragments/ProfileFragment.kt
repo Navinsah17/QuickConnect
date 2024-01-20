@@ -84,7 +84,7 @@ class ProfileFragment : Fragment() {
 
         }
         profileBinding.imgEditStatus.setOnClickListener {
-            getStatusDialog(currentStatus)
+            getStatusDialog()
         }
 
 
@@ -111,14 +111,14 @@ class ProfileFragment : Fragment() {
             .start(requireContext(),this)
     }
 
-    private fun getStatusDialog(currentStatus: String){
+    private fun getStatusDialog(){
         val alertDialog = AlertDialog.Builder(context)
         val view = LayoutInflater.from(context).inflate(R.layout.dailog_layout,null,false)
         alertDialog.setView(view)
 
         val edtUserStatus = view.findViewById<EditText>(R.id.edtUserStatus)
         val btnEditStatus = view.findViewById<Button>(R.id.btnEditStatus)
-        edtUserStatus.setText(currentStatus)
+        //edtUserStatus.setText(currentStatus)
 
 
 
@@ -162,27 +162,7 @@ class ProfileFragment : Fragment() {
 
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        when(requestCode){
-//            100 ->{
-//                if (data != null) {
-//                    val userName = data.getStringExtra("name")
-//                    profileViewModel.updateName(userName!!)
-////                    val editor = sharedPreferences.edit()
-////                    editor.putString("myName", userName).apply()
-//                }
-//            }
-//            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
-//                if (data != null){
-//                    val result = CropImage.getActivityResult(data)
-//                    if (resultCode == Activity.RESULT_OK){
-//                        uploadImage(result.uri)
-//                    }
-//                }
-//            }
-//        }
-//    }
+
 
 
     private fun uploadImage(imageUri: Uri) {
@@ -202,24 +182,6 @@ class ProfileFragment : Fragment() {
                 }
             }
     }
-
-    /*override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when(requestCode){
-            AppConstants.STORAGE_PERMISSION -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    pickImage()
-                else
-                    Toast.makeText(context,"Permission Denied",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
-
 
 
 
